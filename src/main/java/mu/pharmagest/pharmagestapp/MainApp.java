@@ -13,12 +13,10 @@ import java.sql.Connection;
  */
 public class MainApp extends Application {
 
-
-    //Nom de application
-    public final static String nomApp ="Pharmagest";
-
     @Override
     public void start(Stage affichage) throws Exception {
+        //Nom de application
+        String nomApp = "Pharmagest";
         //Nom fichier pour premier vue
         String fichier = "authentification";
         //Logo de application
