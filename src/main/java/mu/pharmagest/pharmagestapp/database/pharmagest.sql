@@ -20,17 +20,6 @@ CREATE TABLE Utilisateur (
     actif BOOLEAN,
     bloquer BOOLEAN
 );
-CREATE TABLE Vendeur{
-    -- Ceci doit extend Utilisateur
-};
-CREATE TABLE Caissier{
-    -- Ceci doit extend Utilisateur
-
-};
-CREATE TABLE Pharmacien{
-    -- Ceci doit extend Utilisateur
-
-};
 
 CREATE TABLE Fournisseur (
     id_fournisseur SERIAL PRIMARY KEY,
