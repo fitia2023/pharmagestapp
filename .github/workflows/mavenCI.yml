@@ -2,9 +2,9 @@ name: Build avec Maven java
 
 on:
   push:
-    branches: [ "Main" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "Main" ]
+    branches: [ "dev" ]
 
 jobs:
   build:
