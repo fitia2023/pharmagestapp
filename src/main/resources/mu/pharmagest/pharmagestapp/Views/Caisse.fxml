@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1050.0" stylesheets="@../assets/css/Caisse.css" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Vente.CaisseController">
+    <children>
+    <Label layoutX="14.0" layoutY="28.0" prefHeight="34.0" prefWidth="209.0" style="-fx-border-color: #2c76ce; -fx-border-width: 0 0 0 2; -fx-padding: 0 0  0 10px;" text="Vente" textFill="#2c76ce">
+        <font>
+            <Font name="Algerian" size="20.0" />
+        </font>
+    </Label>
+    <HBox layoutX="14.0" layoutY="76.0" prefHeight="35.0" prefWidth="371.0" spacing="10.0">
+        <children>
+            <TextField fx:id="r_ticket" alignment="CENTER" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" promptText="Numero Ticket">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </TextField>
+            <JFXButton focusTraversable="false" onAction="#rechercher" prefWidth="100.0" style="-fx-background-color: #BBCFF7;" text="rechercher">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </JFXButton>
+            <JFXButton focusTraversable="false" onAction="#rafraichir" prefWidth="100.0" style="-fx-background-color: #BBCFF7;" text="rafraichir">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </JFXButton>
+        </children>
+    </HBox>
+        <TableView fx:id="t_venteticket" layoutX="14.0" layoutY="139.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="525.0" prefWidth="371.0" VBox.vgrow="NEVER">
+            <columns>
+                <TableColumn fx:id="t_numticket" prefWidth="87.0" text="ticket" />
+            <TableColumn fx:id="t_datevente" prefWidth="135.0" text="date vente" />
+                <TableColumn fx:id="t_prix_total" prefWidth="150.0" text="PRIX TOTAL" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Separator layoutX="513.0" layoutY="28.0" orientation="VERTICAL" prefHeight="658.0" prefWidth="25.0" />
+        <TableView fx:id="t_vente" layoutX="584.0" layoutY="76.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="310.0" prefWidth="424.0" VBox.vgrow="NEVER">
+            <columns>
+                <TableColumn fx:id="t_medicament" prefWidth="131.0" text="medicament" />
+                <TableColumn fx:id="t_prix_vente" prefWidth="83.0" text="PRIX" />
+                <TableColumn fx:id="t_qt" prefWidth="55.0" text="QTY" />
+                <TableColumn fx:id="t_prix" prefWidth="87.0" text="PRIX TOTAL" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <HBox alignment="CENTER_LEFT" layoutX="621.0" layoutY="423.0" prefHeight="45.0" prefWidth="350.0" style="-fx-border-color: #222325; -fx-border-width: 1 0 1 0; -fx-border-style: dotted;">
+            <children>
+                <Pane prefHeight="54.0" prefWidth="220.0">
+                    <children>
+                        <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </Pane>
+                <Text fx:id="t_total" nodeOrientation="RIGHT_TO_LEFT" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" wrappingWidth="123.515625">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Text>
+            </children>
+        </HBox>
+        <JFXButton layoutX="621.0" layoutY="566.0" onAction="#cancel" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #C8ADD3;" text="cancel" textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="871.0" layoutY="566.0" onAction="#payer" prefWidth="100.0" style="-fx-background-color: #A6F4B7;" text="payer" textFill="WHITE">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </JFXButton>
+        <Pane fx:id="reussi" layoutX="127.0" layoutY="28.0" prefHeight="35.0" prefWidth="380.0" style="-fx-background-color: #A6F4B7; -fx-background-radius: 30px;" visible="false">
+            <children>
+                <Text fill="#454ccd" layoutX="119.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payer avec succes" wrappingWidth="163.515625">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Text>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

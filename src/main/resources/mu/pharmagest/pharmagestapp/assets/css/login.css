@@ -1,0 +1,40 @@
+/**************************************************
+ * Root
+**************************************************/
+.root{
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-color: transparent;
+}
+
+/**************************************************
+*                   button
+**************************************************/
+.Jbutton {
+    -fx-background-color: white;
+    -fx-text-fill: #2a811f;
+    -fx-border-width: 2px;
+    -fx-border-color: #2a811f;
+    -fx-transition: background-color 2s, text-fill 2s;
+}
+
+.Jbutton:hover {
+    -fx-background-color: #2a811f;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+/**************************************************
+*                   Input
+**************************************************/
+#enter_name{
+-fx-text-fill: white;
+}
+#er{
+    -fx-text-fill: red;
+    -fx-background-color:white;
+}
+#wi{
+    -fx-text-fill: green;
+}

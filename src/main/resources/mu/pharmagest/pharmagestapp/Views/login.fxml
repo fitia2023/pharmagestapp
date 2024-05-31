@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import mu.pharmagest.pharmagestapp.util.layout.TopApp?>
+
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/login.css" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Authentification.LoginController">
+   <children>
+      <ImageView cache="true" fitHeight="400.0" fitWidth="600.0" layoutX="2.0" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../assets/images/fond.png" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <TopApp AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox fx:id="champ_connexion" layoutX="148.0" layoutY="90.0" prefHeight="234.0" prefWidth="304.0" spacing="10.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="90.0">
+         <children>
+            <Label alignment="CENTER" prefWidth="300.0" text="CONNEXION" textFill="#402c2c">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField id="enter_name" focusTraversable="false" fx:id="InputIdentifiant" alignment="CENTER" maxWidth="200.0" prefHeight="41.0" promptText="Identifiant" style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-border-width: 3px; -fx-border-color: transparent transparent white transparent;" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField id="enter_name" focusTraversable="false" fx:id="InputMdp" alignment="CENTER" maxWidth="200.0" prefHeight="41.0" promptText="Mot de passe" style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-border-width: 3px; -fx-border-color: transparent transparent white transparent;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </PasswordField>
+            <JFXButton alignment="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#se_connecter" prefHeight="30.0" prefWidth="200.0" styleClass="Jbutton" text="CONNECTER">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </VBox.margin>
+            </JFXButton>
+            <VBox alignment="CENTER" prefHeight="37.0" prefWidth="244.0">
+               <children>
+                  <Label style="-fx-background-color: rgba(245, 245, 245, 0.61);" text="Pharmacien vous a créez un compte?">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label onMouseClicked="#inscription" style="-fx-background-color: rgba(245, 245, 245, 0.61);" text="inscription" textFill="BLUE" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <fx:include fx:id="champ_inscription" layoutX="148.0" layoutY="90.0" source="Inscription.fxml" visible="false" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="50.0"/>
+
+      <Label fx:id="btn_con" onMouseClicked="#con" visible="false" layoutX="262.0" layoutY="333.0" style="-fx-background-color: rgba(245, 245, 245, 0.61);" text="connexion" textFill="BLUE" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <ProgressBar fx:id="progression" layoutY="358.0" prefHeight="14.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+
+   </children>
+</AnchorPane>

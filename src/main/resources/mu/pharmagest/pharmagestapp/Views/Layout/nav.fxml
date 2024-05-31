@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="50.0" styleClass="bac" stylesheets="@../../assets/css/nav.css"
+            xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="mu.pharmagest.pharmagestapp.Controller.Dashboard.NavController">
+    <VBox alignment="CENTER" layoutY="56.0" prefWidth="50.0" spacing="20.0" styleClass="vboxnav">
+        <children>
+            <JFXButton fx:id="btnhome" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                       onAction="#home" styleClass="activenav" text=" ">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/images/home.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnvente" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                       onAction="#Vente" styleClass="btnnav" text=" ">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/images/vente.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btncaisse" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                       onAction="#Caisse" styleClass="btnnav" text=" ">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/images/caisse.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnmedic" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                       onAction="#Medic" styleClass="btnnav" text=" ">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/images/medicament.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnfourni" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                       onAction="#Fourni" styleClass="btnnav" text=" ">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/images/fournisseur.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnappro" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                       onAction="#Appro" styleClass="btnnav" text=" ">
+                <graphic>
+                    <ImageView accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT"
+                               pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/images/entrepot.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnlivraison" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                       onAction="#Livraison" styleClass="btnnav" text=" ">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/images/boite.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnutilisateur" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                       onAction="#Utilisateur" styleClass="btnnav" text=" ">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true"
+                               preserveRatio="true">
+                        <image>
+                            <Image url="@../../assets/images/user.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+        </children>
+        <padding>
+            <Insets bottom="20.0" top="20.0"/>
+        </padding>
+    </VBox>
+    <JFXButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" layoutX="10.0" layoutY="636.0"
+               onAction="#Logout" styleClass="btnnav" text=" ">
+        <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@../../assets/images/logout.gif"/>
+                </image>
+            </ImageView>
+        </graphic>
+    </JFXButton>
+
+</AnchorPane>

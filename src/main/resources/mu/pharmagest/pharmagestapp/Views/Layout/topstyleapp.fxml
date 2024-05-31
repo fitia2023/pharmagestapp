@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="CENTER_RIGHT" minWidth="-Infinity" prefHeight="50.0" prefWidth="1100.0" spacing="5.0" styleClass="fond-blue" stylesheets="@../../assets/css/style.css" type="HBox" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label text="Pharmagest" textFill="#fefefe">
+               <font>
+                  <Font name="Eras Medium ITC" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="49.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Pane prefHeight="50.0" prefWidth="850.0">
+         <children>
+            <Label fx:id="dth" alignment="CENTER" layoutY="13.0" prefHeight="17.0" prefWidth="828.0" text="Label" textFill="#fefefe">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Circle fill="DODGERBLUE" onMouseClicked="#minimize" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="minimize-icon" />
+      <Circle fill="DODGERBLUE" onMouseClicked="#closebtn" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="close-icon" />
+   </children>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
+</fx:root>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.text.Font?>
+<fx:root type="GridPane" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <JFXButton onAction="#btn0" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="0"
+                   GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn1" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="1">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn2" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="2"
+                   GridPane.columnIndex="1">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn4" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="4" GridPane.rowIndex="1">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn5" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="5"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btnsup" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="&lt;-"
+                   GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn3" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="3"
+                   GridPane.columnIndex="2">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn6" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="6"
+                   GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn8" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="8"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn9" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="9"
+                   GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton onAction="#btn7" prefHeight="50.0" prefWidth="50.0" styleClass="btn" text="7" GridPane.rowIndex="2">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+    </children>
+</fx:root>

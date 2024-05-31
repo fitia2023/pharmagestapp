@@ -1,0 +1,15 @@
+.bac{
+    -fx-background-color:#FEFEFE;
+    -fx-background-radius: 0 0 0 10px;
+}
+.vboxnav{
+
+    -fx-background-color:#2c76ce;
+    -fx-background-radius: 0 10px 10px 0;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 10,0,0,1 );
+}
+
+.activenav{
+   -fx-background-color:#FEFEFE;
+   -fx-background-radius: 0 10px 10px 0;
+}

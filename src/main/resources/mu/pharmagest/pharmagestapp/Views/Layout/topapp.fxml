@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+
+<?import javafx.scene.control.Button?>
+<fx:root alignment="CENTER_RIGHT" minWidth="600.0" prefHeight="50.0" spacing="5.0" styleClass="back" stylesheets="@../../assets/css/style.css" type="HBox" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle onMouseClicked="#minimize" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="minimize-icon" />
+      <Circle onMouseClicked="#closebtn" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="close-icon" />
+   </children>
+   <padding>
+      <Insets right="10.0" />
+   </padding>
+</fx:root>

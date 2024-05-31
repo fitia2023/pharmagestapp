@@ -1,0 +1,46 @@
+/**************************************************
+ * Root
+**************************************************/
+.root{
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-color:#FFFFFF;
+}
+
+/**************************************************
+ * Window Header
+**************************************************/
+//<!--Pour background -->
+.back{
+    -fx-background-color:transparent;
+}
+
+.fond-blue{
+     -fx-background-color:#2c76ce;
+    -fx-background-radius: 10px;
+}
+
+
+//<!--red pour fermeture ecran-->
+.close-icon {
+	-fx-fill: #92278F;
+	-fx-stroke: transparent;
+}
+
+.close-icon:hover {
+	-fx-fill: #DE80B5;
+}
+
+
+//<!--jaune pour taille d'ecran-->
+.minimize-icon {
+	-fx-fill: #FCB040;
+	-fx-stroke: transparent;
+}
+
+.minimize-icon:hover {
+	-fx-fill: #F4DCC0;
+}
+
+
+

@@ -1,0 +1,19 @@
+.fond{
+    -fx-background-color: #FEFEFE;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0, 0, 1), lighting(white, -0.5, 0.5, 1, 0, false);
+}
+
+.text-field {
+	-fx-accent: red;
+	-fx-background-color: #FEFEFE , white;
+	-fx-border-color: #BBCFF7;
+	-fx-border-width: 0 0 1 0;
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-background-radius: 0;
+}
+.text-field:focused {
+	-fx-background-color: #7EA5F0, #FEFEFE;
+	-fx-border-color: #7EA5F0;
+    -fx-border-width: 0 0 1 0;
+}
