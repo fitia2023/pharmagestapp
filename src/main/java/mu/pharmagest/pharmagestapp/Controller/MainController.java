@@ -21,6 +21,7 @@ import javafx.util.Duration;
 import mu.pharmagest.pharmagestapp.Controller.Authentification.LoginController;
 import mu.pharmagest.pharmagestapp.Controller.Dashboard.DashboardController;
 import mu.pharmagest.pharmagestapp.Controller.Dashboard.NavController;
+import mu.pharmagest.pharmagestapp.Controller.Vente.CaisseController;
 import mu.pharmagest.pharmagestapp.Launch;
 import mu.pharmagest.pharmagestapp.Modele.Utilisateur;
 import mu.pharmagest.pharmagestapp.util.SourceFxml;
@@ -98,7 +99,18 @@ public class MainController implements Initializable {
         MainPane.setCenter(SourceFxml.getParentFxml("Vente"));
     }
     public void affcaisse(){
-        MainPane.setCenter(SourceFxml.getParentFxml("Caisse"));
+        try {
+            if (getUtilisateur() != null) {
+                FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Caisse");
+                Parent parent = fxmlLoader.load();
+                CaisseController controller = fxmlLoader.getController();
+                controller.initPharmacien(getUtilisateur());
+                MainPane.setCenter(parent);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
     public void affmedicament(){
         MainPane.setCenter(SourceFxml.getParentFxml("Medicament"));

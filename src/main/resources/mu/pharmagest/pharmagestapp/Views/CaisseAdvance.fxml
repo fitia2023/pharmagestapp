@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="360.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Vente.CaisseAdvanceController">
+    <HBox layoutX="14.0" layoutY="29.0" prefHeight="36.0" prefWidth="371.0" spacing="10.0">
+        <children>
+            <TextField fx:id="r_ticket" alignment="CENTER" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" promptText="Numero Ticket">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </TextField>
+            <JFXButton focusTraversable="false" onAction="#rechercher" prefWidth="100.0" style="-fx-background-color: #BBCFF7;" text="rechercher">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </JFXButton>
+            <JFXButton focusTraversable="false" onAction="#rafraichir" prefWidth="100.0" style="-fx-background-color: #BBCFF7;" text="rafraichir">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </JFXButton>
+        </children>
+    </HBox>
+    <TableView fx:id="t_venteticket" layoutX="14.0" layoutY="78.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="303.0" prefWidth="401.0" VBox.vgrow="NEVER">
+        <columns>
+            <TableColumn fx:id="t_numticket" prefWidth="87.0" text="ticket" />
+            <TableColumn fx:id="t_datevente" prefWidth="135.0" text="date vente" />
+            <TableColumn fx:id="t_prix_total" prefWidth="150.0" text="PRIX TOTAL" />
+         <TableColumn fx:id="t_payer" prefWidth="150.0" text="Payer" />
+            <TableColumn fx:id="t_suppr" prefWidth="150.0" text="Supprimer" />
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
+
+</AnchorPane>

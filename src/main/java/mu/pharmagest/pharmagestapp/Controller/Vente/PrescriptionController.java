@@ -107,7 +107,7 @@ public class PrescriptionController implements Initializable {
         )) {
 //            System.out.println("Bien ajoute");
             venteController.delprescription();
-            venteController.affreussi();
+            venteController.affimprimer(I_medecin.getText(),I_patient.getText());
         }else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Vueillez recommencez, il y a une erreur");
             alert.show();

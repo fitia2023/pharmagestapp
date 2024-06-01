@@ -23,4 +23,8 @@ public class SourceImage {
             return null; // Retourne null en cas d'erreur
         }
     }
+
+    public static String getPathImage(String nom){
+        return "src/main/resources/mu/pharmagest/pharmagestapp/assets/images/"+nom;
+    }
 }

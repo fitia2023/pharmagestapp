@@ -107,16 +107,13 @@ public class NavController implements Initializable {
         this.controleur.affdashboard();
     }
     @FXML
-
     public void Vente(ActionEvent actionEvent) {
         this.controleur.affvente();
     }
     @FXML
-
     public void Caisse(ActionEvent actionEvent) {
         this.controleur.affcaisse();
     }
-    @FXML
 
     public void Medic(ActionEvent actionEvent)  {
         this.controleur.affmedicament();

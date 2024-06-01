@@ -63,7 +63,7 @@ public class DashboardController implements Initializable {
 
         btn_vente.setOnMouseClicked(event -> mainControleur.affvente());
         btn_caisse.setOnMouseClicked(event -> mainControleur.affcaisse());
-        if (!utilisateur.getRole().equals("pharmacien")){
+        if (!utilisateur.getRole().equals(Utilisateur.Role.pharmacien)){
             admin_acces.setVisible(false);
         }
         this.mainController  = mainControleur;

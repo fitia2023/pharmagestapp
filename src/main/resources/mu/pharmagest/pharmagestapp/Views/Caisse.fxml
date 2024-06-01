@@ -20,7 +20,7 @@
             <Font name="Algerian" size="20.0" />
         </font>
     </Label>
-    <HBox layoutX="14.0" layoutY="76.0" prefHeight="35.0" prefWidth="371.0" spacing="10.0">
+    <HBox layoutX="14.0" layoutY="76.0" prefHeight="36.0" prefWidth="504.0" spacing="10.0">
         <children>
             <TextField fx:id="r_ticket" alignment="CENTER" focusTraversable="false" prefHeight="25.0" prefWidth="150.0" promptText="Numero Ticket">
                 <font>
@@ -36,6 +36,11 @@
                 <font>
                     <Font size="16.0" />
                 </font>
+            </JFXButton>
+            <JFXButton fx:id="btn_advance" focusTraversable="false" onAction="#btn_advance" prefHeight="36.0" prefWidth="137.0" style="-fx-background-color: #BBCFF7;" text="Option avancer">
+               <font>
+                  <Font size="16.0" />
+               </font>
             </JFXButton>
         </children>
     </HBox>
