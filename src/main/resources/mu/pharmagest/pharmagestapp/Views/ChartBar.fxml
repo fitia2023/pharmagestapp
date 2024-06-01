@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<StackedBarChart xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Dashboard.ChartGraphique" fx:id="chart_graph" stylesheets="@../assets/css/chart.css" layoutX="15.0" layoutY="219.0" prefHeight="400.0" prefWidth="638.0" title="Medicament en sotck">
+    <xAxis>
+        <CategoryAxis prefWidth="581.0" />
+    </xAxis>
+    <yAxis>
+        <NumberAxis minorTickLength="3.0" side="LEFT" tickLabelGap="5.0" tickLength="5.0" tickUnit="10.0" upperBound="200.0" />
+    </yAxis>
+</StackedBarChart>
