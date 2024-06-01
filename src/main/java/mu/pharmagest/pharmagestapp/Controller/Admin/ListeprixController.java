@@ -164,7 +164,16 @@ public class ListeprixController implements Initializable {
     //Pour charger le contenu de la liste
     private void charge_data(ObservableList<ListePrix> listePrixes) throws SQLException {
         t_liste.setItems(listePrixes);
-        t_medicament.setCellValueFactory(call_m -> new SimpleStringProperty(call_m.getValue().getMedicament().getNom_medicament()));
+//        t_medicament.setCellValueFactory(call_m -> new SimpleStringProperty(call_m.getValue().getMedicament().getNom_medicament()));
+        t_medicament.setCellValueFactory(call_m -> {
+            Medicament medicament = call_m.getValue().getMedicament();
+            if (medicament != null) {
+                return new SimpleStringProperty(medicament.getNom_medicament());
+            } else {
+                return new SimpleStringProperty("");
+            }
+        });
+
         t_prixU.setCellValueFactory(call_p -> new SimpleDoubleProperty(call_p.getValue().getPrix_unitaire_achat()).asObject());
         t_qt.setCellValueFactory(call_q -> new SimpleIntegerProperty(call_q.getValue().getQt_min_commande()).asObject());
         t_prix.setCellValueFactory(call_pr -> new SimpleDoubleProperty(call_pr.getValue().getPrix_vente()).asObject());
@@ -265,5 +274,12 @@ public class ListeprixController implements Initializable {
         } else {
             AlertInfo(Alert.AlertType.WARNING, "Veuillez bien cliquer sur la liste à mettre à jour", ButtonType.OK);
         }
+    }
+
+    public void initMedicament(String medicament) throws SQLException {
+        Medicament medicament1 =MedicamentDAO.getMedicamentsByName(medicament).get(0);
+        detaillisteprix(
+                new ListePrix(FournisseurDAO.getFournisseursById(id_fournisseur),medicament1,0.0,0,medicament1.getPrix_vente())
+        );
     }
 }

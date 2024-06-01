@@ -221,7 +221,7 @@ public class FournisseurController implements Initializable {
     @FXML
     void liste_prix(ActionEvent event) throws IOException, InterruptedException {
         if (!Info_Id.getText().isBlank()) {
-            id_fo = Integer.parseInt(Info_Id.getText());
+            this.id_fo = Integer.parseInt(Info_Id.getText());
 
             FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("listeprix");
             AnchorPane anchorPane = fxmlLoader.load();

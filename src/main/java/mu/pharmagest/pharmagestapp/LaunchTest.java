@@ -77,7 +77,7 @@ public class LaunchTest extends Application {
 //
 //        try {
 //            // Charger le fichier FXML principal
-//            FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Fournisseur");
+//            FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Dashboard");
 //            Parent parent = fxmlLoader.load();
 //            Scene scene = new Scene(parent);
 //
