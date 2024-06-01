@@ -82,7 +82,7 @@ public class MainController implements Initializable {
                 FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Dashboard");
                 Parent parent = fxmlLoader.load();
                 DashboardController controller = fxmlLoader.getController();
-                controller.initApp(getUtilisateur().getRole(),this);
+                controller.initApp(getUtilisateur(),this);
                 MainPane.setCenter(parent);
             }
         } catch (IOException e) {
