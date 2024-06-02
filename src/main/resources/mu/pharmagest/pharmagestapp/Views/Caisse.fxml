@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1050.0" stylesheets="@../assets/css/Caisse.css" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Vente.CaisseController">
     <children>
-    <Label layoutX="14.0" layoutY="28.0" prefHeight="34.0" prefWidth="209.0" style="-fx-border-color: #2c76ce; -fx-border-width: 0 0 0 2; -fx-padding: 0 0  0 10px;" text="Vente" textFill="#2c76ce">
+    <Label layoutX="15.0" layoutY="28.0" prefHeight="34.0" prefWidth="209.0" style="-fx-border-color: #2c76ce; -fx-border-width: 0 0 0 2; -fx-padding: 0 0  0 10px;" text="Vente" textFill="#2c76ce">
         <font>
             <Font name="Algerian" size="20.0" />
         </font>
