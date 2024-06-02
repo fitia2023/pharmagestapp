@@ -4,9 +4,11 @@ package mu.pharmagest.pharmagestapp.LienBD.Services;
 import mu.pharmagest.pharmagestapp.LienBD.DAO.CommandeDAO;
 import mu.pharmagest.pharmagestapp.LienBD.DAO.LigneCommandeDAO;
 import mu.pharmagest.pharmagestapp.LienBD.DAO.ListePrixDAO;
+import mu.pharmagest.pharmagestapp.LienBD.DAO.MedicamentDAO;
 import mu.pharmagest.pharmagestapp.Modele.Commande;
 import mu.pharmagest.pharmagestapp.Modele.LigneCommande;
 import mu.pharmagest.pharmagestapp.Modele.ListePrix;
+import mu.pharmagest.pharmagestapp.Modele.Medicament;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,15 +23,15 @@ public class ReceptionCommandeService {
 
     // Obtenir toutes les lignes commande
     public static List<LigneCommande> getallcommande() throws SQLException {
-        List<LigneCommande> ligneCommandes = new ArrayList<>();
-
-        for (LigneCommande ligneCommande : LigneCommandeDAO.getallLigneCommande()) {
-            Commande commande = ligneCommande.getCommande();
-            if (commande != null && "En cours".equals(commande.getStatut())) {
-                ligneCommandes.add(ligneCommande);
-            }
-        }
-        return ligneCommandes;
+//        List<LigneCommande> ligneCommandes = new ArrayList<>();
+//
+//        for (LigneCommande ligneCommande : LigneCommandeDAO.getallLigneCommande()) {
+//            Commande commande = ligneCommande.getCommande();
+//            if (commande != null && "En cours".equals(commande.getStatut())) {
+//                ligneCommandes.add(ligneCommande);
+//            }
+//        }
+        return LigneCommandeDAO.getallLigneCommande();
     }
 
 
@@ -60,7 +62,13 @@ public class ReceptionCommandeService {
         Boolean reponse = false;
         if (LigneCommandeDAO.qtrecucommande(ligneCommande)){
             if (CommandeDAO.commandetermine(ligneCommande.getCommande().getId_commande(),ligneCommande.getCommande().getPrix_payer())){
-                reponse = true;
+                Medicament medicament = ligneCommande.getMedicament();
+                medicament.setQt_stock(
+                        medicament.getQt_stock()+ ligneCommande.getQt_recu()
+                );
+                if (MedicamentDAO.updateMedicament(medicament)){
+                    reponse = true;
+                }
             }
         }
         return reponse;

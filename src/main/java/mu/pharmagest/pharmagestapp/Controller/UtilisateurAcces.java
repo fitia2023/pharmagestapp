@@ -20,6 +20,7 @@ public class UtilisateurAcces {
                 autorisations.add("inventaire");
                 autorisations.add("caisse");
                 autorisations.add("vente");
+                autorisations.add("utilisateur");
                 break;
             case  vendeur:
                 autorisations.add("vente");

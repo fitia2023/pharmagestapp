@@ -29,11 +29,15 @@ public class VenteService {
     }
 
     public static Integer getNumVenteSuivant() throws SQLException {
+        List<Vente> ventes = VenteDAO.getallvente();
+        Integer nbr;
 
-        Integer nbr = VenteDAO.getallvente().get(
-                VenteDAO.getallvente().size() - 1
-        ).getId_vente();
-        nbr += 1;
+        if (!ventes.isEmpty()) {
+            nbr = ventes.get(ventes.size() - 1).getId_vente() + 1;
+        } else {
+            nbr = 1;
+        }
+
         return nbr;
     }
 

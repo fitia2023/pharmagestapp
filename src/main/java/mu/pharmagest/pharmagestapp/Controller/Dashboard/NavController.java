@@ -32,6 +32,7 @@ public class NavController implements Initializable {
     public Button btnappro ;
     @FXML
     public Button btnlivraison ;
+
     @FXML
     public JFXButton btnutilisateur;
 
@@ -47,8 +48,9 @@ public class NavController implements Initializable {
         PopOver popOverCaisse = getPopOver("Caisse");
         PopOver popOverMedic = getPopOver("Medicament");
         PopOver popOverFourni = getPopOver("Fournisseur");
-        PopOver popOverAppro = getPopOver("Approvisionnement");
-        PopOver popOverLivraison = getPopOver("Inventaire");
+        PopOver popOverAppro = getPopOver("Commande");
+        PopOver popOverLivraison = getPopOver("Reception");
+        PopOver popOverUtilisateur = getPopOver("Utilisateur");
 
         // Afficher les popovers respectifs lors du survol des boutons correspondants
         btnhome.setOnMouseEntered(event -> popOverHome.show(btnhome));
@@ -58,6 +60,8 @@ public class NavController implements Initializable {
         btnfourni.setOnMouseEntered(event -> popOverFourni.show(btnfourni));
         btnappro.setOnMouseEntered(event -> popOverAppro.show(btnappro));
         btnlivraison.setOnMouseEntered(event -> popOverLivraison.show(btnlivraison));
+        btnutilisateur.setOnMouseEntered(event -> popOverUtilisateur.show(btnutilisateur));
+
 
         // Fermer les popovers respectifs lorsqu'ils perdent le focus
         btnhome.setOnMouseExited(event -> popOverHome.hide());
@@ -67,6 +71,8 @@ public class NavController implements Initializable {
         btnfourni.setOnMouseExited(event -> popOverFourni.hide());
         btnappro.setOnMouseExited(event -> popOverAppro.hide());
         btnlivraison.setOnMouseExited(event -> popOverLivraison.hide());
+        btnutilisateur.setOnMouseExited(event -> popOverUtilisateur.hide());
+
     }
     //init pour acces btn
     public void getUser(Utilisateur.Role role, MainController mainControleur){
@@ -78,6 +84,8 @@ public class NavController implements Initializable {
         btnfourni.setManaged(UtilisateurAcces.getAutorisations(role).contains("fournisseur"));
         btnappro.setManaged(UtilisateurAcces.getAutorisations(role).contains("approvisionnement"));
         btnlivraison.setManaged(UtilisateurAcces.getAutorisations(role).contains("inventaire"));
+        btnutilisateur.setManaged(UtilisateurAcces.getAutorisations(role).contains("utilisateur"));
+
 
         btnvente.setVisible(UtilisateurAcces.getAutorisations(role).contains("vente"));
         btncaisse.setVisible(UtilisateurAcces.getAutorisations(role).contains("caisse"));
@@ -85,6 +93,8 @@ public class NavController implements Initializable {
         btnfourni.setVisible(UtilisateurAcces.getAutorisations(role).contains("fournisseur"));
         btnappro.setVisible(UtilisateurAcces.getAutorisations(role).contains("approvisionnement"));
         btnlivraison.setVisible(UtilisateurAcces.getAutorisations(role).contains("inventaire"));
+        btnutilisateur.setVisible(UtilisateurAcces.getAutorisations(role).contains("utilisateur"));
+
     }
 
     // Pour affichage popover avec nom sélectionné
@@ -137,7 +147,6 @@ public class NavController implements Initializable {
 
     }
     @FXML
-
     public void Utilisateur(ActionEvent event) {
     }
     @FXML

@@ -2,11 +2,11 @@ package mu.pharmagest.pharmagestapp.LienBD.DAO;
 
 import mu.pharmagest.pharmagestapp.LienBD.ConnectionBD;
 import mu.pharmagest.pharmagestapp.Modele.Commande;
+import mu.pharmagest.pharmagestapp.Modele.Fournisseur;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Cette classe gère l'accès aux données commande dans la base de données.
@@ -24,6 +24,36 @@ public class CommandeDAO {
     }
 
 
+    //Obtenir tous les commandes
+    public static List<Commande> getallcommande() throws SQLException {
+
+        String requete = "SELECT * FROM commande";
+
+        List<Commande> commandes = new ArrayList<>();
+        Connection connection = null;
+
+        try {
+            connection = ConnectionBD.getConnexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(requete);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                commandes.add(mapCommande(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erreur lors de la liste commandes. Cause : " + e.getMessage(), e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    // Gérer l'exception de fermeture de la connexion
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return commandes;
+    }
     /**
      * Récupère une commande à partir de son ID.
      *
@@ -99,15 +129,16 @@ public class CommandeDAO {
 
     //Ajout du commande
     public static Boolean addCommande(Commande commande) throws SQLException {
-        String requete = "INSERT INTO commande (id_commande, prix_total, id_fournisseur) VALUES (?, ?, ? );";
+        String requete = "INSERT INTO commande (id_commande,date_commande, prix_total, id_fournisseur) VALUES (?,?, ?, ? );";
         Connection connection = null;
 
         try {
             connection = ConnectionBD.getConnexion();
             try (PreparedStatement preparedStatement = connection.prepareStatement(requete)) {
                 preparedStatement.setInt(1, commande.getId_commande());
-                preparedStatement.setDouble(2, commande.getPrix_total());
-                preparedStatement.setInt(3, commande.getFournisseur().getId_fournisseur());
+                preparedStatement.setDate(2, new Date(commande.getDate_commande().getTime()));
+                preparedStatement.setDouble(3, commande.getPrix_total());
+                preparedStatement.setInt(4, commande.getFournisseur().getId_fournisseur());
                 int rowCount = preparedStatement.executeUpdate();
 
                 return rowCount > 0;
