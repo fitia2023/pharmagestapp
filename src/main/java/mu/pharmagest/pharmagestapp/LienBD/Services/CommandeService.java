@@ -17,13 +17,35 @@ public class CommandeService {
     public static Boolean addLCommande(LigneCommande ligneCommande) throws SQLException {
         Boolean reponse = false;
         Commande commande = ligneCommande.getCommande();
-        if (CommandeDAO.addCommande(ligneCommande.getCommande())) {
+
+        // Vérifier si une commande avec le même ID existe déjà
+        if (commandeExists(commande.getId_commande())) {
             if (LigneCommandeDAO.addLigneCommande(ligneCommande)) {
                 reponse = true;
             }
+        } else {
+            // Ajouter la commande
+            if (CommandeDAO.addCommande(ligneCommande.getCommande())) {
+                // Ajouter la ligne de commande
+                if (LigneCommandeDAO.addLigneCommande(ligneCommande)) {
+                    reponse = true;
+                }
+            }
         }
+
         return reponse;
     }
+
+    // Méthode pour vérifier si une commande avec le même ID existe déjà
+    private static boolean commandeExists(int idCommande) throws SQLException {
+        for (Commande commande : CommandeDAO.getallcommande()) {
+            if (commande.getId_commande() == idCommande) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     //Avoir la liste des medicaments en dessous du seuil
     public static List<Medicament> suggestioncommande() throws SQLException {

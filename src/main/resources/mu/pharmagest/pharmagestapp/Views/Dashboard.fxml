@@ -1,159 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Dashboard.DashboardController">
+<Pane prefHeight="700.0" prefWidth="1050.0" stylesheets="@../assets/css/dashboard.css" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Dashboard.DashboardController">
     <children>
-        <Label layoutX="14.0" layoutY="28.0" prefHeight="34.0" prefWidth="209.0" style="-fx-border-color: #2c76ce; -fx-border-width: 0 0 0 2; -fx-padding: 0 0  0 10px;" text="TABLEAU DE BORD" textFill="#2c76ce">
+        <Label layoutX="15.0" layoutY="28.0" prefHeight="34.0" prefWidth="209.0" style="-fx-border-color: #2c76ce; -fx-border-width: 0 0 0 2; -fx-padding: 0 0  0 10px;" text="TABLEAU DE BORD" textFill="#2c76ce">
             <font>
                 <Font name="Algerian" size="20.0" />
             </font>
         </Label>
-      <HBox fx:id="hb" layoutX="14.0" layoutY="87.0" prefHeight="150.0" spacing="20.0">
+      <HBox fx:id="hb" layoutX="15.0" layoutY="87.0" prefHeight="100.0" prefWidth="1020.0" spacing="20.0">
          <children>
-            <Pane fx:id="btn_vente" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #7ea5f0; -fx-background-radius: 20; -fx-effect: dropShadow(gaussian,RGBA(0,0,0,0.5), 0, 0, 5,5);">
+            <Pane fx:id="btn_vente" prefHeight="100.0" prefWidth="240.0" styleClass="panebtn">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
-                  <Circle centerX="60.0" centerY="50.0" layoutX="15.0" layoutY="13.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
-                     <fill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.5882353186607361" green="0.7647058963775635" blue="0.8078431487083435" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                  </Circle>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/images/vente.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" graphicTextGap="3.0" layoutX="-25.0" layoutY="103.0" prefWidth="200.0" style="-fx-text-fill: white;" text="vente" textFill="WHITE">
-                     <font>
-                        <Font name="Ink Free" size="25.0" />
-                     </font>
-                  </Label>
+                  <HBox alignment="CENTER" layoutX="20.0" layoutY="15.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="130.0">
+                           <children>
+                              <Label text="VENTE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Nb:" fx:id="txt_vente">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane maxHeight="60.0" maxWidth="60.0" prefHeight="50.0" prefWidth="60.0" styleClass="imgbtn" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/vente.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
-            <Pane fx:id="btn_caisse" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #7ea5f0; -fx-background-radius: 20; -fx-effect: dropShadow(gaussian,RGBA(0,0,0,0.5), 0, 0, 5,5);">
+            <Pane fx:id="btn_caisse" prefHeight="100.0" prefWidth="240.0" styleClass="panebtn">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
-                  <Circle centerX="60.0" centerY="50.0" layoutX="15.0" layoutY="13.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
-                     <fill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.5882353186607361" green="0.7647058963775635" blue="0.8078431487083435" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                  </Circle>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/images/caisse.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" graphicTextGap="3.0" layoutX="-25.0" layoutY="103.0" prefWidth="200.0" style="-fx-text-fill: white;" text="caisse" textFill="WHITE">
-                     <font>
-                        <Font name="Ink Free" size="25.0" />
-                     </font>
-                  </Label>
+                  <HBox alignment="CENTER" layoutX="20.0" layoutY="15.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="130.0">
+                           <children>
+                              <Label text="CAISSE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Nb:" fx:id="txt_caisse">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane maxHeight="60.0" maxWidth="60.0" prefHeight="50.0" prefWidth="60.0" styleClass="imgbtn" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/caisse.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
-            <Pane fx:id="btn_maintenance" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #7ea5f0; -fx-background-radius: 20; -fx-effect: dropShadow(gaussian,RGBA(0,0,0,0.5), 0, 0, 5,5);">
+            <Pane fx:id="btn_maintenance" prefHeight="100.0" prefWidth="240.0" style="-fx-background-color: #E9E9E9; -fx-background-radius: 5px;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
-                  <Circle centerX="60.0" centerY="50.0" layoutX="15.0" layoutY="13.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
-                     <fill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.5882353186607361" green="0.7647058963775635" blue="0.8078431487083435" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                  </Circle>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/images/fournisseur.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" graphicTextGap="3.0" layoutX="-25.0" layoutY="103.0" prefWidth="200.0" style="-fx-text-fill: white;" text="maintenance" textFill="WHITE">
+                  <Label alignment="TOP_CENTER" layoutX="71.0" text="Maintenance">
                      <font>
-                        <Font name="Ink Free" size="25.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
+                  <HBox alignment="CENTER" layoutX="20.0" layoutY="15.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefWidth="130.0" spacing="5.0">
+                           <children>
+                              <JFXButton focusTraversable="false" onAction="#btn_medicament" prefHeight="25.0" prefWidth="100.0" styleClass="panebtn" text="Medicament" />
+                              <JFXButton focusTraversable="false" onAction="#btn_fournisseur" prefHeight="25.0" prefWidth="100.0" styleClass="panebtn" text="Fournisseur" />
+                           </children>
+                        </VBox>
+                        <Pane maxHeight="60.0" maxWidth="60.0" prefHeight="50.0" prefWidth="60.0" styleClass="imgbtn" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/maintenance.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
-            <Pane fx:id="btn_appro" prefHeight="150.0" prefWidth="217.0" style="-fx-background-color: #7ea5f0; -fx-background-radius: 20; -fx-effect: dropShadow(gaussian,RGBA(0,0,0,0.5), 0, 0, 5,5);">
+            <Pane fx:id="btn_appro" prefHeight="100.0" prefWidth="240.0" style="-fx-background-color: #E9E9E9; -fx-background-radius: 5px;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
-                  <Circle centerX="60.0" centerY="50.0" layoutX="49.0" layoutY="13.0" radius="40.0" stroke="BLACK" strokeType="INSIDE">
-                     <fill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.5882353186607361" green="0.7647058963775635" blue="0.8078431487083435" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                  </Circle>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="84.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/images/entrepot.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" graphicTextGap="3.0" layoutX="15.0" layoutY="103.0" prefWidth="200.0" style="-fx-text-fill: white;" text="approvisionnement" textFill="WHITE">
+                  <Label alignment="TOP_CENTER" layoutX="51.0" text="Approvisionnement">
                      <font>
-                        <Font name="Ink Free" size="25.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
+                  <HBox alignment="CENTER" layoutX="20.0" layoutY="15.0" prefHeight="70.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="49.0" spacing="5.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <JFXButton focusTraversable="false" onAction="#btn_commande" prefHeight="25.0" prefWidth="81.0" styleClass="panebtn" text="Commande" VBox.vgrow="NEVER" />
+                              <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#btn_reception" prefHeight="25.0" prefWidth="139.0" styleClass="panebtn" text="Reception commande" VBox.vgrow="NEVER" />
+                           </children>
+                        </VBox>
+                        <Pane maxHeight="60.0" maxWidth="60.0" prefHeight="50.0" prefWidth="60.0" styleClass="imgbtn" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/approvisionnement.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
          </children>
       </HBox>
+      <Pane layoutX="14.0" layoutY="211.0" prefHeight="331.0" prefWidth="289.0" style="-fx-background-color: #E9E9E9;">
+         <children>
+            <VBox alignment="CENTER" layoutX="25.0" layoutY="25.0" prefHeight="275.0" prefWidth="240.0">
+               <children>
+                  <Text fx:id="profil_user" strokeType="OUTSIDE" strokeWidth="0.0" text="Profil">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="121.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/images/avatar.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="users_details" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom et prenom">
+                     <font>
+                        <Font name="Algerian" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <fx:include fx:id="admin_acces" layoutX="339.0" layoutY="211.0" prefHeight="400.0" prefWidth="698.0" source="ChartBar.fxml" />
     </children>
 </Pane>

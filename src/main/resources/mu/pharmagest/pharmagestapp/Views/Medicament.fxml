@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,22 +16,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1050.0" style="-fx-background-color:-p-primaire ;" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Admin.MedicamentController">
+<AnchorPane prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Admin.MedicamentController">
     <children>
-        <TableView fx:id="TableMedicament" editable="true" layoutX="36.0" layoutY="421.0" maxWidth="1150.0" prefHeight="326.0" prefWidth="1027.0">
-            <columns>
-                <TableColumn fx:id="TNomM" minWidth="20.0" prefWidth="150.0" text="Nom" />
-                <TableColumn fx:id="TFamilleM" prefWidth="100.0" text="Famille" />
-                <TableColumn fx:id="TUniteM" prefWidth="75.0" text="Unite" />
-                <TableColumn fx:id="TPrixM" prefWidth="100.0" text="Prix de vente" />
-                <TableColumn fx:id="TQTStock" prefWidth="100.0" text="QT en stock" />
-                <TableColumn fx:id="TQTMinStock" prefWidth="100.0" text="min stock" />
-                <TableColumn fx:id="TQTMaxStock" prefWidth="100.0" text="max stock" />
-                <TableColumn fx:id="TOrdonnanceM" prefWidth="75.0" text="Ordonnance" />
-                <TableColumn fx:id="TSeuilComM" prefWidth="75.0" text="Seuil" />
-                <TableColumn fx:id="TFourniM" prefWidth="150.0" text="Fournisseur Habituel" />
-            </columns>
-        </TableView>
+        <Label layoutX="15.0" layoutY="28.0" prefHeight="34.0" prefWidth="209.0" style="-fx-border-color: #2c76ce; -fx-border-width: 0 0 0 2; -fx-padding: 0 0  0 10px;" text="Médicament" textFill="#2c76ce">
+            <font>
+                <Font name="Algerian" size="20.0" />
+            </font>
+        </Label>
         <GridPane layoutX="89.0" layoutY="61.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
@@ -157,12 +149,26 @@
                         <Font size="16.0" />
                     </font>
                 </TextField>
-                <Button mnemonicParsing="false" onAction="#btn_recherche" prefHeight="35.0" prefWidth="100.0" text="Rechercher" style="-fx-background-color: #BDCFE7;"/>
-                <Button mnemonicParsing="false" onAction="#btn_rafraichir" prefHeight="35.0" prefWidth="100.0" text="Rafraichir" style="-fx-background-color: #BDCFE7;" />
-                <Button mnemonicParsing="false" onAction="#btn_ajouter" prefHeight="35.0" prefWidth="100.0" text="Ajouter" style="-fx-background-color: #BDCFE7;"/>
-                <Button mnemonicParsing="false" onAction="#btn_supprimer" prefHeight="35.0" prefWidth="100.0" text="Supprimer" style="-fx-background-color: #BDCFE7;"/>
-                <Button mnemonicParsing="false" onAction="#btn_up" prefHeight="35.0" prefWidth="100.0" text="Mettre a jour" style="-fx-background-color: #BDCFE7;"/>
+                <Button mnemonicParsing="false" onAction="#btn_recherche" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #BDCFE7;" text="Rechercher" />
+                <Button mnemonicParsing="false" onAction="#btn_rafraichir" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #BDCFE7;" text="Rafraichir" />
+                <Button mnemonicParsing="false" onAction="#btn_ajouter" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #BDCFE7;" text="Ajouter" />
+                <Button mnemonicParsing="false" onAction="#btn_supprimer" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #BDCFE7;" text="Supprimer" />
+                <Button mnemonicParsing="false" onAction="#btn_up" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #BDCFE7;" text="Mettre a jour" />
             </children>
         </HBox>
+        <TableView fx:id="TableMedicament" editable="true" layoutX="15.0" layoutY="421.0" maxWidth="1020.0" prefHeight="326.0" prefWidth="1020.0">
+            <columns>
+                <TableColumn fx:id="TNomM" minWidth="20.0" prefWidth="150.0" text="Nom" />
+                <TableColumn fx:id="TFamilleM" prefWidth="100.0" text="Famille" />
+                <TableColumn fx:id="TUniteM" prefWidth="75.0" text="Unite" />
+                <TableColumn fx:id="TPrixM" prefWidth="100.0" text="Prix de vente" />
+                <TableColumn fx:id="TQTStock" prefWidth="100.0" text="QT en stock" />
+                <TableColumn fx:id="TQTMinStock" prefWidth="100.0" text="min stock" />
+                <TableColumn fx:id="TQTMaxStock" prefWidth="100.0" text="max stock" />
+                <TableColumn fx:id="TOrdonnanceM" prefWidth="75.0" text="Ordonnance" />
+                <TableColumn fx:id="TSeuilComM" prefWidth="75.0" text="Seuil" />
+                <TableColumn fx:id="TFourniM" prefWidth="150.0" text="Fournisseur Habituel" />
+            </columns>
+        </TableView>
     </children>
 </AnchorPane>

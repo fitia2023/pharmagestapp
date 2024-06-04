@@ -59,13 +59,15 @@ public class LoginController implements Initializable {
         if (!champvide()){
             //verification que c'est correct
             if (UtilisateurDAO.sAuthentifier(InputIdentifiant.getText(),InputMdp.getText())){
-
+                UtilisateurDAO.enregistrerConnexion(InputIdentifiant.getText(),true);
                 //System.out.print("Correcte");
                 champ_connexion.setVisible(false);
                 //animation progressbar
                 progressAndChange();
 
             }else {
+                UtilisateurDAO.enregistrerConnexion(InputIdentifiant.getText(),false);
+
                 showErrorMessage("Identifiant ou mot de passe incorrecte");
                 cleanInput();
             }

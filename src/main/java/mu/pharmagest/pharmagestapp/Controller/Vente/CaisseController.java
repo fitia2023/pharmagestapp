@@ -1,5 +1,6 @@
 package mu.pharmagest.pharmagestapp.Controller.Vente;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -7,23 +8,32 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import mu.pharmagest.pharmagestapp.LienBD.DAO.VenteDAO;
 import mu.pharmagest.pharmagestapp.LienBD.Services.CaisseService;
+import mu.pharmagest.pharmagestapp.Modele.Medicament;
+import mu.pharmagest.pharmagestapp.Modele.Utilisateur;
 import mu.pharmagest.pharmagestapp.Modele.Vente;
 import mu.pharmagest.pharmagestapp.util.AnimationPopup;
+import mu.pharmagest.pharmagestapp.util.SourceFxml;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CaisseController implements Initializable {
@@ -41,6 +51,8 @@ public class CaisseController implements Initializable {
     public Text t_total;
     @FXML
     public Pane reussi;
+    @FXML
+    public JFXButton btn_advance;
 
     @FXML
     private TableView<ModelVente> t_vente;
@@ -149,22 +161,52 @@ public class CaisseController implements Initializable {
 
     @FXML
     public void payer(ActionEvent event) {
+        List<ModelVente> medicaments = new ArrayList<>();
         if (t_venteticket.getSelectionModel().getSelectedItem() != null) {
             try {
-
-                if (CaisseService.payervente(
-                        t_venteticket.getSelectionModel().getSelectedItem()
-                )) {
-                    t_total.setText("");
-                    AnimationPopup.animation5sPane(reussi);
-                    cancel(new ActionEvent());
-                    rafraichir(new ActionEvent());
+                medicaments.addAll(
+                        CaisseService.getallmodelvente(VenteDAO.getVenteById(t_venteticket.getSelectionModel().getSelectedItem().getId_vente()))
+                );
+                boolean suite = true;
+                for (ModelVente medicament : medicaments){
+                    if (medicament.getMedicament().getQt_stock() < medicament.getQt()){
+                        Alert alert = new Alert(Alert.AlertType.ERROR,"Il n'y a pas assez de "+medicament.getMedicament().getNom_medicament()+" en stock");
+                        alert.show();
+                        suite =false;
+                    }
                 }
-                ;
+                if (suite){
+                    if (CaisseService.payervente(
+                            t_venteticket.getSelectionModel().getSelectedItem()
+                    )) {
+                        t_total.setText("");
+                        AnimationPopup.animation5sPane(reussi);
+                        cancel(new ActionEvent());
+                        rafraichir(new ActionEvent());
+                    }
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
-
     }
+    public void initPharmacien(Utilisateur utilisateur){
+        if (!utilisateur.getRole().equals(Utilisateur.Role.pharmacien)){
+            btn_advance.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void btn_advance(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("CaisseAdvance");
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

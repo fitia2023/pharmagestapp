@@ -23,7 +23,7 @@ public class ConnectionBD {
 
             //Config base en local
             String host = "localhost:5432";
-            String bd_nom = "pharmagest";
+            String bd_nom = "PharmagestTest";
             String utilisateur_bd = "postgres";
             String pass_bd = "root";
 

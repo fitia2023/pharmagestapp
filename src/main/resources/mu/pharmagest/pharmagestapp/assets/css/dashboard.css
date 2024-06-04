@@ -1,0 +1,11 @@
+.panebtn{
+    -fx-background-color: #E9E9E9;
+    -fx-background-radius:5px;
+}
+.imgbtn{
+    -fx-background-color: #7EA5F0;
+    -fx-background-radius:5px;
+}
+.panebtn:hover{
+    -fx-background-color: #C2D0EC;
+}

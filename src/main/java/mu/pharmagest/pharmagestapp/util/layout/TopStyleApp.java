@@ -7,11 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import mu.pharmagest.pharmagestapp.Launch;
 import mu.pharmagest.pharmagestapp.util.SourceFxml;
 
 import java.io.IOException;
@@ -85,9 +87,16 @@ public class TopStyleApp extends HBox {
 
     @FXML
     void closebtn(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        stage.close();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Attention veuillez bien faire une sauvegarde avant \n Cliquer sur oui pour quitter", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                stage.close();
+            }
+        });
     }
 
     @FXML

@@ -6,6 +6,10 @@ module mu.pharmagest.pharmagestapp {
     requires org.postgresql.jdbc;
     requires com.jfoenix;
     requires org.controlsfx.controls;
+    requires kernel;
+    requires layout;
+    requires io;
+    requires java.desktop;
 
 
     // Exportation des packages

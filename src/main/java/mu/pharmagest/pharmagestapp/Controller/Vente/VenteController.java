@@ -121,6 +121,7 @@ public class VenteController implements Initializable {
             }
         }
     }
+
     @FXML
     public void rechercher(ActionEvent event) throws SQLException {
         afficherMedicaments(FXCollections.observableList(MedicamentDAO.getMedicamentsByName(r_medic.getText())));
@@ -132,6 +133,7 @@ public class VenteController implements Initializable {
         afficherMedicaments(FXCollections.observableList(MedicamentDAO.getallmedicament()));
         numbertiket();
     }
+
     private void initializeTableView() {
         t_medicament.setCellValueFactory(call -> new SimpleStringProperty(call.getValue().getMedicament().getNom_medicament()));
         t_prix_vente.setCellValueFactory(call -> new SimpleDoubleProperty(call.getValue().getPrice_vente()).asObject());
@@ -151,6 +153,7 @@ public class VenteController implements Initializable {
                 }
         );
     }
+
     public void numbertiket() throws SQLException {
         nb_ticket.setText(
                 VenteService.getNumVenteSuivant().toString()
@@ -188,35 +191,46 @@ public class VenteController implements Initializable {
                 int qt = Integer.parseInt(qt_inserer.getText());
                 if (qt > 0) {
                     Medicament medicament = MedicamentDAO.getMedicamentsByName(nom_medic.getText()).get(0);
-                    double prix = medicament.getPrix_vente() * qt;
-                    String prixFormate = String.format(Locale.US, "%.2f", prix);
-                    t_vente.getItems().set(index_of_up, new ModelVente(
-                            medicament,
-                            medicament.getPrix_vente(),
-                            qt,
-                            Double.parseDouble(prixFormate)
-                    ));
-                    parcourirtable();
-                    up = false;
-                    index_of_up = -1;
-                    changed_ticket.setText("ajouter");
-                    resetTicketTable();
+                    if (medicament.getQt_stock() < qt){
+                        Alert alert = new Alert(Alert.AlertType.ERROR,"Il n'y a pas assez de "+medicament.getNom_medicament()+" en stock");
+                        alert.show();
+                    }else {
+                        double prix = medicament.getPrix_vente() * qt;
+                        String prixFormate = String.format(Locale.US, "%.2f", prix);
+                        t_vente.getItems().set(index_of_up, new ModelVente(
+                                medicament,
+                                medicament.getPrix_vente(),
+                                qt,
+                                Double.parseDouble(prixFormate)
+                        ));
+                        parcourirtable();
+                        up = false;
+                        index_of_up = -1;
+                        changed_ticket.setText("ajouter");
+                        resetTicketTable();
+                    }
+
                 }
             }
         } else {
             int qt = Integer.parseInt(qt_inserer.getText());
             if (qt > 0 && !nom_medic.getText().isEmpty()) {
                 Medicament medicament = MedicamentDAO.getMedicamentsByName(nom_medic.getText()).get(0);
-                double prix = medicament.getPrix_vente() * qt;
-                String prixFormate = String.format(Locale.US, "%.2f", prix);
-                t_vente.getItems().add(new ModelVente(
-                        medicament,
-                        medicament.getPrix_vente(),
-                        qt,
-                        Double.parseDouble(prixFormate)
-                ));
-                parcourirtable();
-                resetTicketTable();
+                if (medicament.getQt_stock() < qt){
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"Il n'y a pas assez de "+medicament.getNom_medicament()+" en stock");
+                    alert.show();
+                }else {
+                    double prix = medicament.getPrix_vente() * qt;
+                    String prixFormate = String.format(Locale.US, "%.2f", prix);
+                    t_vente.getItems().add(new ModelVente(
+                            medicament,
+                            medicament.getPrix_vente(),
+                            qt,
+                            Double.parseDouble(prixFormate)
+                    ));
+                    parcourirtable();
+                    resetTicketTable();
+                }
             }
 
         }
@@ -246,8 +260,9 @@ public class VenteController implements Initializable {
                         false,
                         null
                 );
+
                 if (VenteService.addvente(vente, ligneVenteList(vente))) {
-                    affreussi();
+                    affimprimer(null, null);
                 }
             }
         }
@@ -298,6 +313,27 @@ public class VenteController implements Initializable {
         );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+    }
+
+    public void affimprimer(String med, String patient) throws SQLException {
+
+        ButtonType imprimerButton = new ButtonType("Imprimer", ButtonBar.ButtonData.OK_DONE);
+        ButtonType continuerButton = new ButtonType("Continuer", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez-vous imprimer le PDF ou continuer?", imprimerButton, continuerButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == imprimerButton) {
+            // Logique pour imprimer le PDF
+            VentePDF.creatpdf(t_vente.getItems(), med, patient, nb_ticket.getText(), date_ticket.getText());
+            VentePDF.ouvrirpdf();
+            resetTicketTable();
+            reset_ticket(new ActionEvent());
+        } else {
+            affreussi();
+        }
+
     }
 
     public void affreussi() throws SQLException {

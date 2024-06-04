@@ -16,9 +16,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1050.0" style="-fx-background-color:-p-primaire ;" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Admin.CommandeController">
+<AnchorPane prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Admin.CommandeController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="100.0" prefHeight="550.0" prefWidth="250.0">
+      <Label layoutX="15.0" layoutY="28.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: #2c76ce; -fx-border-width: 0 0 0 2; -fx-padding: 0 0  0 10px;" text="Commande médicament" textFill="#2c76ce">
+         <font>
+            <Font name="Algerian" size="20.0" />
+         </font>
+      </Label>
+      <VBox alignment="TOP_CENTER" layoutX="15.0" layoutY="100.0" prefHeight="550.0" prefWidth="250.0">
          <children>
             <Label minHeight="50.0" text="Medicament en dessous du seuil">
                <font>
@@ -34,8 +39,8 @@
             <ListView fx:id="LMedic" prefHeight="250.0" prefWidth="250.0" />
          </children>
       </VBox>
-      <Separator layoutX="285.0" layoutY="75.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="9.0" />
-      <VBox alignment="CENTER" layoutX="306.0" layoutY="100.0" prefHeight="500.0" prefWidth="400.0">
+      <Separator layoutX="272.0" layoutY="75.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="9.0" />
+      <VBox alignment="CENTER" layoutX="281.0" layoutY="100.0" prefHeight="500.0" prefWidth="350.0">
          <children>
             <Label text="Détails commande">
                <font>
@@ -75,8 +80,8 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#btn_ajout_commande" text="Ajouter la commande" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" style="-fx-background-color: #BDCFE7;"/>
-                  <Button mnemonicParsing="false" onAction="#btn_annule" text="Annuler" GridPane.halignment="CENTER" GridPane.rowIndex="4" style="-fx-background-color: #BDCFE7;"/>
+                  <Button mnemonicParsing="false" onAction="#btn_ajout_commande" style="-fx-background-color: #BDCFE7;" text="Ajouter la commande" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Button mnemonicParsing="false" onAction="#btn_annule" style="-fx-background-color: #BDCFE7;" text="Annuler" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Label fx:id="I_NomMedic" text="Nom medicament" GridPane.columnIndex="1">
                      <font>
                         <Font size="16.0" />
@@ -97,15 +102,15 @@
             </GridPane>
          </children>
       </VBox>
-      <Separator layoutX="715.0" layoutY="75.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="9.0" />
-      <VBox alignment="TOP_CENTER" layoutX="736.0" layoutY="125.0" prefHeight="450.0" prefWidth="350.0" spacing="10.0">
+      <Separator layoutX="639.0" layoutY="75.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="9.0" />
+      <VBox alignment="TOP_CENTER" layoutX="657.0" layoutY="100.0" prefHeight="450.0" prefWidth="350.0" spacing="10.0">
          <children>
-            <Label text="Panier de commande">
+            <Label text="Liste de commande">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <TableView fx:id="T_panier" prefHeight="300.0" prefWidth="200.0">
+            <TableView fx:id="T_panier" prefHeight="299.0" prefWidth="233.0">
               <columns>
                   <TableColumn fx:id="T_id" prefWidth="38.6666259765625" text="Id" />
                 <TableColumn fx:id="T_medic" prefWidth="88.00006103515625" text="Medicament" />

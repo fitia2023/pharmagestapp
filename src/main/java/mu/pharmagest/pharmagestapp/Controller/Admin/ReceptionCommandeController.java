@@ -2,6 +2,7 @@ package mu.pharmagest.pharmagestapp.Controller.Admin;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import mu.pharmagest.pharmagestapp.Modele.LigneCommande;
 import mu.pharmagest.pharmagestapp.LienBD.Services.ReceptionCommandeService;
+
 import java.net.URL;
+import java.util.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -20,6 +23,8 @@ public class ReceptionCommandeController implements Initializable {
     public TableView<LigneCommande> T_lignecommande;
     @FXML
     public TableColumn<LigneCommande, Double> T_payer;
+    @FXML
+    public TableColumn<LigneCommande, Date> T_date;
     @FXML
     public TableColumn<LigneCommande, Integer> T_id;
     @FXML
@@ -62,6 +67,7 @@ public class ReceptionCommandeController implements Initializable {
     private void charge_data(ObservableList<LigneCommande> ligneCommandes) throws SQLException {
         T_lignecommande.setItems(ligneCommandes);
         T_id.setCellValueFactory(call -> new SimpleIntegerProperty(call.getValue().getCommande().getId_commande()).asObject());
+        T_date.setCellValueFactory(call -> new SimpleObjectProperty<>(call.getValue().getCommande().getDate_commande()));
         T_medic.setCellValueFactory(call -> new SimpleStringProperty(call.getValue().getMedicament().getNom_medicament()));
         T_Fournisseur.setCellValueFactory(call -> new SimpleStringProperty(call.getValue().getCommande().getFournisseur().getNom_fournisseur()));
         T_qt.setCellValueFactory(call -> new SimpleIntegerProperty(call.getValue().getQt_medicament()).asObject());
@@ -76,10 +82,20 @@ public class ReceptionCommandeController implements Initializable {
     private void detail_livraison(LigneCommande commande) {
 
         if (commande != null) {
+            if (commande.getCommande().getStatut().equals("En cours")) {
+                I_NomMedic.setText(commande.getMedicament().getNom_medicament());
+                I_Fournisseur.setText(commande.getCommande().getFournisseur().getNom_fournisseur());
+                I_id_commande.setText(commande.getCommande().getId_commande().toString());
+                qt_recu.setText(commande.getQt_medicament().toString());
+                qt_recu.setDisable(false);
+            } else {
+                I_NomMedic.setText(commande.getMedicament().getNom_medicament());
+                I_Fournisseur.setText(commande.getCommande().getFournisseur().getNom_fournisseur());
+                I_id_commande.setText(commande.getCommande().getId_commande().toString());
+                qt_recu.setText(commande.getQt_recu().toString());
+                qt_recu.setDisable(true);
+            }
 
-            I_NomMedic.setText(commande.getMedicament().getNom_medicament());
-            I_Fournisseur.setText(commande.getCommande().getFournisseur().getNom_fournisseur());
-            I_id_commande.setText(commande.getCommande().getId_commande().toString());
 
         } else {
 
@@ -112,8 +128,8 @@ public class ReceptionCommandeController implements Initializable {
             prix_payer *= qt_recue;
             ligneCommande.setQt_recu(qt_recue);
             ligneCommande.getCommande().setPrix_payer(prix_payer);
-            if (ReceptionCommandeService.terminercommande(ligneCommande)){
-                AlertInfo(Alert.AlertType.CONFIRMATION, "Vous devez payer "+ prix_payer +"RS, cliquer sur YES pour continuer", ButtonType.YES);
+            if (ReceptionCommandeService.terminercommande(ligneCommande)) {
+                AlertInfo(Alert.AlertType.CONFIRMATION, "Vous devez payer " + prix_payer + "RS, cliquer sur YES pour continuer", ButtonType.YES);
                 detail_livraison(null);
             }
 

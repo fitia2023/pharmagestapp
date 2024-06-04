@@ -8,13 +8,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import mu.pharmagest.pharmagestapp.Controller.Dashboard.DashboardController;
 import mu.pharmagest.pharmagestapp.LienBD.DAO.FournisseurDAO;
 import mu.pharmagest.pharmagestapp.LienBD.DAO.MedicamentDAO;
 import mu.pharmagest.pharmagestapp.Modele.Fournisseur;
 import mu.pharmagest.pharmagestapp.Modele.Medicament;
+import mu.pharmagest.pharmagestapp.util.SourceFxml;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -180,7 +188,11 @@ public class MedicamentController implements Initializable {
                 Integer seuil = Integer.parseInt(I_SeuilM.getText());
                 Fournisseur fournisseur = FournisseurDAO.getFournisseursByName(I_FournHab.getValue()).get(0);
                 if (MedicamentDAO.addMedicament(new Medicament(null, nom, famille, isOrdonnanceOui, prix, qt_stock, qt_min, qt_max, seuil, unite, fournisseur))) {
+
+                    affichagefournisseur(fournisseur,nom);
+
                     AlertInfo(Alert.AlertType.CONFIRMATION, "Pour continuer, cliquer sur YES", ButtonType.YES);
+
                     detailMedicament(null);
                 }
                 // Faites quelque chose avec 'tel' ici
@@ -189,7 +201,7 @@ public class MedicamentController implements Initializable {
                 System.out.println("Erreur de conversion : " + e.getMessage());
                 AlertInfo(Alert.AlertType.WARNING, "Veuillez bien remplir tous les champs correctement", ButtonType.OK);
 
-            } catch (SQLException e) {
+            } catch (SQLException | IOException e) {
                 e.printStackTrace(); // Log l'exception (vous pouvez utiliser un logger à la place)
                 AlertInfo(Alert.AlertType.WARNING, "Erreur lors de l'insertion dans la base de données", ButtonType.OK);
             }
@@ -198,6 +210,30 @@ public class MedicamentController implements Initializable {
             AlertInfo(Alert.AlertType.WARNING, "Veuillez bien remplir tous les champs ou rafraichir", ButtonType.OK);
         }
 
+    }
+
+    private void affichagefournisseur(Fournisseur fournisseur,String medicament) throws IOException {
+        FournisseurController.id_fo = fournisseur.getId_fournisseur();
+        try {
+            FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Listeprix");
+            Parent parent = fxmlLoader.load();
+            ListeprixController controller = fxmlLoader.getController();
+            controller.initMedicament(medicament);
+            // Création de la scène avec l'AnchorPane
+            Scene scene = new Scene(parent);
+
+            //  la scène de la fenêtre
+            Stage stage = new Stage();
+
+            // Configuration de la scène avec la nouvelle scène
+            stage.setScene(scene);
+            // Affichage de la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //Pour afficher information etat
@@ -263,7 +299,7 @@ public class MedicamentController implements Initializable {
                     detailMedicament(null);
                     id_medicament = null;
                 }
-            }else {
+            } else {
                 AlertInfo(Alert.AlertType.WARNING, "Veuillez bien cliquer sur fournisseur à supprimer", ButtonType.OK);
             }
             // Faites quelque chose avec 'tel' ici
@@ -296,7 +332,7 @@ public class MedicamentController implements Initializable {
                     Integer qt_max = Integer.parseInt(I_QtMaxStockM.getText());
                     Integer seuil = Integer.parseInt(I_SeuilM.getText());
                     Fournisseur fournisseur = FournisseurDAO.getFournisseursByName(I_FournHab.getValue()).get(0);
-                    if (MedicamentDAO.updateMedicament(new Medicament(id_medicament,nom,famille,isOrdonnanceOui,prix,qt_stock,qt_min,qt_max,seuil,unite,fournisseur))) {
+                    if (MedicamentDAO.updateMedicament(new Medicament(id_medicament, nom, famille, isOrdonnanceOui, prix, qt_stock, qt_min, qt_max, seuil, unite, fournisseur))) {
                         AlertInfo(Alert.AlertType.CONFIRMATION, "Pour continuer, cliquer sur YES", ButtonType.YES);
                         id_medicament = null;
                         detailMedicament(null);

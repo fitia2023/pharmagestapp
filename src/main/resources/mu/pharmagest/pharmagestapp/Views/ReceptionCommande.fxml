@@ -12,22 +12,28 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1050.0" style="-fx-background-color:-p-primaire ;" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Admin.ReceptionCommandeController">
+<AnchorPane prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mu.pharmagest.pharmagestapp.Controller.Admin.ReceptionCommandeController">
    <children>
-      <TableView fx:id="T_lignecommande" layoutX="14.0" layoutY="195.0" prefHeight="468.0" prefWidth="482.0">
+      <Label layoutX="15.0" layoutY="28.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: #2c76ce; -fx-border-width: 0 0 0 2; -fx-padding: 0 0  0 10px;" text="reception commande" textFill="#2c76ce">
+         <font>
+            <Font name="Algerian" size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="T_lignecommande" layoutX="14.0" layoutY="133.0" prefHeight="468.0" prefWidth="542.0">
          <columns>
-            <TableColumn fx:id="T_id" prefWidth="38.6666259765625" text="Id" />
+            <TableColumn fx:id="T_id" prefWidth="47.0" text="Id" />
+            <TableColumn fx:id="T_date" prefWidth="81.0" text="date" />
             <TableColumn fx:id="T_medic" prefWidth="92.66668319702148" text="Medicament" />
             <TableColumn fx:id="T_Fournisseur" minWidth="7.3333740234375" prefWidth="89.33334350585938" text="Fournisseur" />
             <TableColumn fx:id="T_qt" prefWidth="59.33326721191406" text="Quantité" />
             <TableColumn fx:id="T_payer" prefWidth="88.6666259765625" text="Prix à payer" />
-            <TableColumn fx:id="T_statut" prefWidth="114.0" text="statut" />
+            <TableColumn fx:id="T_statut" prefWidth="79.0" text="statut" />
          </columns>
       </TableView>
-      <TextField fx:id="I_recherche" layoutX="14.0" layoutY="141.0" promptText="Id de la commande" />
-      <Button layoutX="182.0" layoutY="141.0" mnemonicParsing="false" onAction="#recherche" text="recherche" style="-fx-background-color: #BDCFE7;"/>
-      <Separator layoutX="504.0" layoutY="66.0" orientation="VERTICAL" prefHeight="601.0" prefWidth="10.0" />
-      <GridPane alignment="CENTER_LEFT" layoutX="533.0" layoutY="195.0" minHeight="300.0" prefHeight="300.0" prefWidth="450.0">
+      <TextField fx:id="I_recherche" layoutX="15.0" layoutY="90.0" promptText="Id de la commande" />
+      <Button layoutX="187.0" layoutY="90.0" mnemonicParsing="false" onAction="#recherche" style="-fx-background-color: #BDCFE7;" text="recherche" />
+      <Separator layoutX="566.0" layoutY="50.0" orientation="VERTICAL" prefHeight="601.0" prefWidth="10.0" />
+      <GridPane alignment="CENTER_LEFT" layoutX="586.0" layoutY="184.0" minHeight="300.0" prefHeight="300.0" prefWidth="450.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -60,9 +66,9 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#btn_commande" text="Commande reçue" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" style="-fx-background-color: #BDCFE7;"/>
-            <Button mnemonicParsing="false" onAction="#btn_annule" text="Annuler" GridPane.halignment="CENTER" GridPane.rowIndex="4" style="-fx-background-color: #BDCFE7;"/>
-            <Label fx:id="I_NomMedic" text="Nom medicament" GridPane.columnIndex="1" GridPane.rowIndex="1" >
+            <Button mnemonicParsing="false" onAction="#btn_commande" style="-fx-background-color: #BDCFE7;" text="Commande reçue" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#btn_annule" style="-fx-background-color: #BDCFE7;" text="Annuler" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label fx:id="I_NomMedic" text="Nom medicament" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -84,6 +90,6 @@
             </Label>
          </children>
       </GridPane>
-      <Button layoutX="269.0" layoutY="141.0" mnemonicParsing="false" onAction="#refreche" text="Refreche" style="-fx-background-color: #BDCFE7;"/>
+      <Button layoutX="278.0" layoutY="90.0" mnemonicParsing="false" onAction="#refreche" style="-fx-background-color: #BDCFE7;" text="Refreche" />
    </children>
 </AnchorPane>

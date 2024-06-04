@@ -1,9 +1,12 @@
 package mu.pharmagest.pharmagestapp.LienBD.DAO;
 
 import mu.pharmagest.pharmagestapp.LienBD.ConnectionBD;
+import mu.pharmagest.pharmagestapp.Modele.Fournisseur;
 import mu.pharmagest.pharmagestapp.Modele.Utilisateur;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -20,6 +23,36 @@ public class UtilisateurDAO {
     public UtilisateurDAO() {
     }
 
+    //Obtenir tous les utilisateurs
+    public static List<Utilisateur> getallutilisateurs() throws SQLException {
+
+        String requete = "SELECT * FROM utilisateur";
+
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        Connection connection = null;
+
+        try {
+            connection = ConnectionBD.getConnexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(requete);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                utilisateurs.add(mapUtilisateur(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erreur lors de la liste utilisateurs. Cause : " + e.getMessage(), e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    // Gérer l'exception de fermeture de la connexion
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return utilisateurs;
+    }
 
     /**
      * Vérifie existence de l'utilisateur
@@ -62,6 +95,67 @@ public class UtilisateurDAO {
             }
         }
         return false;
+    }
+
+    //    Information sur la connexion
+    public static void enregistrerConnexion(String identifiant, boolean reussi) {
+        final String sql = "call enregistrer_connexion(?, ?)";
+
+        Connection connection = null;
+
+        try {
+            connection = ConnectionBD.getConnexion();
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+                preparedStatement.setString(1, identifiant);
+                preparedStatement.setBoolean(2, reussi);
+
+                preparedStatement.execute();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors sur l'authentification utilisateur:", e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    // Gérer l'exception de fermeture de la connexion
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    //    Recherche utilisateur par nom
+    public static List<Utilisateur> getallutilisateursbyname(String nom) throws SQLException {
+        String requete = "SELECT * FROM utilisateur WHERE identifiant LIKE ?;";
+
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        Connection connection = null;
+
+        try {
+            connection = ConnectionBD.getConnexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(requete);
+            preparedStatement.setString(1, "%" + nom + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                utilisateurs.add(mapUtilisateur(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erreur lors de la liste utilisateurs par nom. Cause : " + e.getMessage(), e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    // Gérer l'exception de fermeture de la connexion
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return utilisateurs;
     }
 
     /**
@@ -117,7 +211,7 @@ public class UtilisateurDAO {
      * @throws SQLException     Si une erreur survient lors de l'interaction avec la base de données.
      * @throws RuntimeException Si une erreur survient lors de l'authentification.
      */
-    public static Utilisateur getUtilisateurConnecter(String identifiant, String motDePasse){
+    public static Utilisateur getUtilisateurConnecter(String identifiant, String motDePasse) {
         String requete_getutilisateur = "SELECT * FROM Utilisateur WHERE identifiant = ? AND mot_de_passe = ? AND bloquer = false;";
         Connection connection = null;
 
@@ -269,6 +363,42 @@ public class UtilisateurDAO {
     }
 
     /**
+     * Activer utilisateur dans la base de données.
+     *
+     * @param utilisateur L'utilisateur à désactiver
+     * @return true si l'utilisateur a été désactiver avec succès, sinon false.
+     * @throws RuntimeException Si une erreur survient lors désactive de l'utilisateur.
+     */
+    public static boolean activeUtilisateur(Utilisateur utilisateur) {
+        final String requete_desactive = "UPDATE utilisateur SET bloquer = ? WHERE id_utilisateur = ?";
+
+        Connection connection = null;
+
+        try {
+            connection = ConnectionBD.getConnexion();
+            try (PreparedStatement preparedStatement = connection.prepareStatement(requete_desactive)) {
+                preparedStatement.setBoolean(1, false);
+                preparedStatement.setInt(2, utilisateur.getId_utilisateur());
+
+                int rowCount = preparedStatement.executeUpdate();
+
+                return rowCount > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors lors activation de l'utilisateur:", e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    // Gérer l'exception de fermeture de la connexion
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
      * Mettre à jour un utilisateur dans la base de données.
      *
      * @param utilisateur L'utilisateur à mettre à jour
@@ -295,7 +425,6 @@ public class UtilisateurDAO {
                 preparedStatement.setInt(7, utilisateur.getId_utilisateur());
 
                 int rowCount = preparedStatement.executeUpdate();
-
                 return rowCount > 0;
             }
         } catch (SQLException e) {
@@ -329,11 +458,12 @@ public class UtilisateurDAO {
                 resultSet.getString("adresse_utilisateur"),
                 resultSet.getInt("tel_utilisateur"),
                 resultSet.getString("identifiant"),
-                "",
+                resultSet.getString("mot_de_passe"),
                 Utilisateur.Role.valueOf(resultSet.getString("role")),
                 resultSet.getBoolean("actif"),
                 resultSet.getBoolean("bloquer")
         );
     }
+
 
 }

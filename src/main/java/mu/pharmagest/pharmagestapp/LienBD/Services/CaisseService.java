@@ -54,6 +54,16 @@ public class CaisseService {
         }
         return ventes;
     }
+    public static boolean delventepharmacien(int id_vente) throws SQLException {
+        if (LigneVenteDAO.deleteVenteLigne(id_vente)) {
+
+                if (!VenteDAO.deleteVente(id_vente)) {
+                    return false;
+                }
+            return true;
+        }
+        return false;
+    }
 
     public static boolean payervente(Vente vente) throws SQLException {
         if (VenteDAO.upventepayer(vente)) {

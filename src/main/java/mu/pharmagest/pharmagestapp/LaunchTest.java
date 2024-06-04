@@ -8,12 +8,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import mu.pharmagest.pharmagestapp.Controller.Admin.UtilisateursController;
 import mu.pharmagest.pharmagestapp.Controller.MainController;
+import mu.pharmagest.pharmagestapp.Controller.Vente.CaisseController;
 import mu.pharmagest.pharmagestapp.Modele.Utilisateur;
 import mu.pharmagest.pharmagestapp.util.SourceFxml;
 import mu.pharmagest.pharmagestapp.util.SourceImage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -22,64 +26,31 @@ import java.util.Date;
 public class LaunchTest extends Application {
 
 //    //    Fenêtre main test dashboard global
-    @Override
-    public void start(Stage firststage) {
-
-        try {
-            // Charger le fichier FXML principal
-            FXMLLoader fxmlLoader = SourceFxml.getsrcmain();
-            Parent parent = fxmlLoader.load();
-            MainController mainController = fxmlLoader.getController();
-
-            mainController.setUtilisateur(
-                    new Utilisateur(
-                            1,
-                            "Doe",
-                            "John",
-                            new Date(), // Date actuelle
-                            "123 Rue de la Rue",
-                            123456789,
-                            "john.doe",
-                            "password",
-                            Utilisateur.Role.pharmacien, // Supposons que Role est une classe avec un constructeur prenant un rôle en paramètre
-                            true,
-                            false
-                    )
-            );
-            Scene scene = new Scene(parent,1100,750);
-
-            // Rendre la fenêtre transparente
-            firststage.initStyle(StageStyle.TRANSPARENT);
-            scene.setFill(Color.TRANSPARENT);
-
-            //Logo de application
-            String logo = "logo.png";
-            firststage.getIcons().add(SourceImage.getsrcImage(logo));
-
-            // Définir la scène principale et afficher la fenêtre
-            firststage.setScene(scene);
-            firststage.setTitle("test");
-            firststage.show();
-        } catch (IOException e) {
-            // Gérer les erreurs de chargement du fichier FXML
-            e.printStackTrace();
-            displayErrorAlert("Erreur de chargement de l'application");
-        } catch (Exception e) {
-            // Gérer toute autre exception
-            e.printStackTrace();
-            displayErrorAlert("Une erreur inattendue s'est produite");
-        }
-    }
-
-    //    Fenêtre test affichage
 //    @Override
 //    public void start(Stage firststage) {
 //
 //        try {
 //            // Charger le fichier FXML principal
-//            FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Fournisseur");
+//            FXMLLoader fxmlLoader = SourceFxml.getsrcmain();
 //            Parent parent = fxmlLoader.load();
-//            Scene scene = new Scene(parent);
+//            MainController mainController = fxmlLoader.getController();
+//
+//            mainController.setUtilisateur(
+//                    new Utilisateur(
+//                            1,
+//                            "Doe",
+//                            "John",
+//                            new Date(), // Date actuelle
+//                            "123 Rue de la Rue",
+//                            123456789,
+//                            "john.doe",
+//                            "password",
+//                            Utilisateur.Role.pharmacien, // Supposons que Role est une classe avec un constructeur prenant un rôle en paramètre
+//                            true,
+//                            false
+//                    )
+//            );
+//            Scene scene = new Scene(parent,1100,750);
 //
 //            // Rendre la fenêtre transparente
 //            firststage.initStyle(StageStyle.TRANSPARENT);
@@ -103,6 +74,61 @@ public class LaunchTest extends Application {
 //            displayErrorAlert("Une erreur inattendue s'est produite");
 //        }
 //    }
+
+    //    Fenêtre test affichage
+    @Override
+    public void start(Stage firststage) {
+
+        try {
+            // Charger le fichier FXML principal
+            FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Utilisateurs");
+            Parent parent = fxmlLoader.load();
+            UtilisateursController controller = fxmlLoader.getController();
+
+            LocalDate localDate = LocalDate.parse("2004-06-17", DateTimeFormatter.ISO_LOCAL_DATE);
+
+            // Convertit LocalDate en java.sql.Date
+            Date date = java.sql.Date.valueOf(localDate);
+
+            controller.initApp(
+                    new Utilisateur(
+                            6,
+                            "Andrianarisoa",
+                            "Fitia",
+                            date, // Date actuelle
+                            "Quatre Bornes",
+                            55171600,
+                            "FA.da",
+                            "12345",
+                            Utilisateur.Role.pharmacien, // Supposons que Role est une classe avec un constructeur prenant un rôle en paramètre
+                            false,
+                            false
+                    )
+            );
+            Scene scene = new Scene(parent);
+
+            // Rendre la fenêtre transparente
+            firststage.initStyle(StageStyle.TRANSPARENT);
+            scene.setFill(Color.TRANSPARENT);
+
+            //Logo de application
+            String logo = "logo.png";
+            firststage.getIcons().add(SourceImage.getsrcImage(logo));
+
+            // Définir la scène principale et afficher la fenêtre
+            firststage.setScene(scene);
+            firststage.setTitle("test");
+            firststage.show();
+        } catch (IOException e) {
+            // Gérer les erreurs de chargement du fichier FXML
+            e.printStackTrace();
+            displayErrorAlert("Erreur de chargement de l'application");
+        } catch (Exception e) {
+            // Gérer toute autre exception
+            e.printStackTrace();
+            displayErrorAlert("Une erreur inattendue s'est produite");
+        }
+    }
 
 
     public static void main(String[] args) {
