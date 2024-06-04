@@ -5,6 +5,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,12 +13,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SpotLight;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import mu.pharmagest.pharmagestapp.Controller.Admin.UtilisateursController;
 import mu.pharmagest.pharmagestapp.Controller.Authentification.LoginController;
 import mu.pharmagest.pharmagestapp.Controller.Dashboard.DashboardController;
 import mu.pharmagest.pharmagestapp.Controller.Dashboard.NavController;
@@ -127,20 +130,40 @@ public class MainController implements Initializable {
         MainPane.setCenter(SourceFxml.getParentFxml("ReceptionCommande"));
     }
 
-    //deconnecter
-    public void deconnecter() {
-        Stage stage = (Stage) MainPane.getScene().getWindow();
-        stage.close();
-
-        // Relancer l'application
-        Launch launch = new Launch();
-        Stage login = new Stage();
+    public  void affUtilisateur(){
         try {
-            launch.start(login);
-        } catch (Exception e) {
-            // Gérer les erreurs de relance de l'application
-            e.printStackTrace();
+            if (getUtilisateur() != null) {
+                FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Utilisateurs");
+                Parent parent = fxmlLoader.load();
+                UtilisateursController controller = fxmlLoader.getController();
+                controller.initApp(getUtilisateur());
+                MainPane.setCenter(parent);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+//    Decconexion
+    public void deconnecter() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez-vous vraiment vous déconnecter?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                // Action à effectuer si l'utilisateur choisit de se déconnecter
+                Stage stage = (Stage) MainPane.getScene().getWindow();
+                stage.close();
+
+                // Relancer l'application (si nécessaire)
+                Launch launch = new Launch();
+                Stage login = new Stage();
+                try {
+                    launch.start(login);
+                } catch (Exception e) {
+                    // Gérer les erreurs de relance de l'application
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 }

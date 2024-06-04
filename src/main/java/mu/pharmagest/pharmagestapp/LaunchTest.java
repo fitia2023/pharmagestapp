@@ -8,12 +8,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import mu.pharmagest.pharmagestapp.Controller.Admin.UtilisateursController;
 import mu.pharmagest.pharmagestapp.Controller.MainController;
+import mu.pharmagest.pharmagestapp.Controller.Vente.CaisseController;
 import mu.pharmagest.pharmagestapp.Modele.Utilisateur;
 import mu.pharmagest.pharmagestapp.util.SourceFxml;
 import mu.pharmagest.pharmagestapp.util.SourceImage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -77,8 +81,30 @@ public class LaunchTest extends Application {
 
         try {
             // Charger le fichier FXML principal
-            FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Commande");
+            FXMLLoader fxmlLoader = SourceFxml.getsrcFxml("Utilisateurs");
             Parent parent = fxmlLoader.load();
+            UtilisateursController controller = fxmlLoader.getController();
+
+            LocalDate localDate = LocalDate.parse("2004-06-17", DateTimeFormatter.ISO_LOCAL_DATE);
+
+            // Convertit LocalDate en java.sql.Date
+            Date date = java.sql.Date.valueOf(localDate);
+
+            controller.initApp(
+                    new Utilisateur(
+                            6,
+                            "Andrianarisoa",
+                            "Fitia",
+                            date, // Date actuelle
+                            "Quatre Bornes",
+                            55171600,
+                            "FA.da",
+                            "12345",
+                            Utilisateur.Role.pharmacien, // Supposons que Role est une classe avec un constructeur prenant un rôle en paramètre
+                            false,
+                            false
+                    )
+            );
             Scene scene = new Scene(parent);
 
             // Rendre la fenêtre transparente

@@ -24,9 +24,13 @@ public class UtilisateurAcces {
                 break;
             case  vendeur:
                 autorisations.add("vente");
+                autorisations.add("utilisateur");
+
                 break;
             case caissier:
                 autorisations.add("caisse");
+                autorisations.add("utilisateur");
+
                 break;
         }
         return autorisations;

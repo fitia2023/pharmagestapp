@@ -148,6 +148,7 @@ public class NavController implements Initializable {
     }
     @FXML
     public void Utilisateur(ActionEvent event) {
+        this.controleur.affUtilisateur();
     }
     @FXML
     public void Logout(ActionEvent event) {
